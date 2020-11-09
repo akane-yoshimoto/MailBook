@@ -1,18 +1,18 @@
 //在庫管理アプリと連携させるプログラム
-(function(){
+(function()　{
     "use strict";
 
     /*新規レコード登録時連携*/
-    kintone.events.on("app.record.create.submit.success", function(event){
+    kintone.events.on("app.record.create.submit.success", function(event)　{
 
         var record = event.record;
-        if(record.radio.value == '入庫'){
+        if(record.radio.value == '入庫')　{
 
             var body = {
                 app: appID,
                 id:record.レコードno.value
             };
-            kintone.api(kintone.api.url('/k/v1/record', true), "GET", body).then(function(res){
+            kintone.api(kintone.api.url('/k/v1/record', true), "GET", body).then(function(res)　{
 
                 body.record = {
                     "入庫" : {
@@ -21,12 +21,12 @@
                 };
                 kintone.api(kintone.api.url('/k/v1/record', true), "PUT", body);
             });
-        }else{
+        }else　{
             var body = {
                 app: appID,
                 id:record.レコードno.value
             };
-            kintone.api(kintone.api.url('/k/v1/record', true), "GET", body).then(function(res){
+            kintone.api(kintone.api.url('/k/v1/record', true), "GET", body).then(function(res)　{
   
                 body.record = {
                     "出庫" : {
@@ -40,16 +40,16 @@
     });
   
     /*削除時連携*/
-    kintone.events.on(["app.record.detail.delete.submit", "app.record.index.delete.submit"], function(event){
+    kintone.events.on(["app.record.detail.delete.submit", "app.record.index.delete.submit"], function(event)　{
 
         var record = event.record;
-        if(record.radio.value == '入庫'){
+        if(record.radio.value == '入庫')　{
 
             var body = {
                 app: appID,
                 id:record.レコードno.value
             };
-            kintone.api(kintone.api.url('/k/v1/record', true), "GET", body).then(function(res){
+            kintone.api(kintone.api.url('/k/v1/record', true), "GET", body).then(function(res)　{
 
                 body.record = {
                     "入庫" : {
@@ -63,7 +63,7 @@
                 app: appID,
                 id:record.レコードno.value
             };
-            kintone.api(kintone.api.url('/k/v1/record', true), "GET", body).then(function(res){
+            kintone.api(kintone.api.url('/k/v1/record', true), "GET", body).then(function(res)　{
 
                 body.record = {
                     "出庫" : {
